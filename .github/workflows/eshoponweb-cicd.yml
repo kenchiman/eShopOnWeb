@@ -68,26 +68,26 @@ jobs:
         name: bicep-template
         path: bicep-template
         
-   #Login in your azure subscription using a service principal (credentials stored as GitHub Secret in repo)
-    - name: Azure Login
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+  #  #Login in your azure subscription using a service principal (credentials stored as GitHub Secret in repo)
+  #   - name: Azure Login
+  #     uses: azure/login@v1
+  #     with:
+  #       creds: ${{ secrets.AZURE_CREDENTIALS }}
            
-    # Deploy Azure WebApp using Bicep file
-    - name: deploy
-      uses: azure/arm-deploy@v1
-      with:
-        subscriptionId: ${{ env.SUBSCRIPTION-ID }}
-        resourceGroupName: ${{ env.RESOURCE-GROUP }}
-        template: bicep-template/webapp.bicep
-        parameters: 'webAppName=${{ env.WEBAPP-NAME }} location=${{ env.LOCATION }}'
-        failOnStdErr: false   
+  #   # Deploy Azure WebApp using Bicep file
+  #   - name: deploy
+  #     uses: azure/arm-deploy@v1
+  #     with:
+  #       subscriptionId: ${{ env.SUBSCRIPTION-ID }}
+  #       resourceGroupName: ${{ env.RESOURCE-GROUP }}
+  #       template: bicep-template/webapp.bicep
+  #       parameters: 'webAppName=${{ env.WEBAPP-NAME }} location=${{ env.LOCATION }}'
+  #       failOnStdErr: false   
     
-    # Publish website to Azure App Service (WebApp)
-    - name: Publish Website to WebApp
-      uses: Azure/webapps-deploy@v2
-      with:
-        app-name: ${{ env.WEBAPP-NAME  }}
-        package: .net-app
+  #   # Publish website to Azure App Service (WebApp)
+  #   - name: Publish Website to WebApp
+  #     uses: Azure/webapps-deploy@v2
+  #     with:
+  #       app-name: ${{ env.WEBAPP-NAME  }}
+  #       package: .net-app
    
